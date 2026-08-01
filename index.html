@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Shahana, this is our little story</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
       :root {
         --plum: #60466c;
@@ -25,8 +25,8 @@
         --muted: #806d85;
         --line: rgba(96, 70, 108, 0.15);
         --shadow: 0 24px 70px rgba(127, 93, 133, 0.17);
-        --sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        --serif: 'Bodoni Moda', Didot, Georgia, serif;
+        --sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         --mono: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
 
@@ -1158,10 +1158,323 @@
         }
       }
     </style>
+    <style>
+      main {
+        position: relative;
+      }
+
+      .memory-thread {
+        position: absolute;
+        z-index: 0;
+        top: 96svh;
+        bottom: 88vh;
+        left: clamp(20px, 3.5vw, 52px);
+        width: 90px;
+        pointer-events: none;
+      }
+
+      .memory-thread-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 12px;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, rgba(199, 141, 75, 0.4) 8%, rgba(187, 163, 220, 0.36) 47%, rgba(216, 141, 156, 0.46) 78%, transparent);
+      }
+
+      .memory-thread-dot {
+        position: absolute;
+        left: -4px;
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        color: rgba(96, 70, 108, 0.46);
+        font-family: var(--mono);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .memory-thread-dot::before {
+        width: 9px;
+        height: 9px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        background: var(--cream);
+        content: '';
+      }
+
+      .dot-start { top: 4%; }
+      .dot-navratri { top: 27%; }
+      .dot-diwali { top: 54%; }
+      .dot-end { top: 90%; color: var(--blush-deep); font-size: 18px; }
+      .dot-end::before { display: none; }
+
+      .hero {
+        display: block;
+        min-height: 110svh;
+        padding: 17vh 0 13vh;
+        overflow: visible;
+      }
+
+      .hero-copy {
+        width: min(65%, 760px);
+        padding-left: clamp(22px, 5vw, 70px);
+      }
+
+      .hero h1 {
+        max-width: 740px;
+        color: var(--plum-deep);
+        font-family: var(--sans);
+        font-size: clamp(3.35rem, 8.4vw, 8.8rem);
+        font-weight: 600;
+        letter-spacing: -0.085em;
+        line-height: 0.92;
+      }
+
+      .hero h1 em,
+      .chapter h2 em,
+      .finale h2 em {
+        color: var(--blush-deep);
+        font-style: normal;
+      }
+
+      .hero-visual {
+        position: absolute;
+        top: 9vh;
+        right: 1%;
+        width: min(49vw, 650px);
+        min-height: min(76vh, 730px);
+      }
+
+      .hero-photo-card {
+        width: min(70%, 460px);
+        transform: rotate(4.5deg);
+      }
+
+      .hero-side-label {
+        position: absolute;
+        right: 4%;
+        bottom: 16%;
+        margin: 0;
+        color: rgba(96, 70, 108, 0.38);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.13em;
+        line-height: 1.7;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      .chapter {
+        display: block;
+        min-height: 126svh;
+        padding: 18vh 0 17vh;
+        overflow: visible;
+      }
+
+      .chapter::before {
+        position: absolute;
+        z-index: -2;
+        top: 11%;
+        bottom: 11%;
+        border-radius: 54px;
+        content: '';
+      }
+
+      #beginning::before { right: 9%; left: -10%; background: rgba(234, 226, 248, 0.66); transform: rotate(-1.6deg); }
+      #navratri::before { right: -10%; left: 10%; background: rgba(246, 214, 220, 0.62); transform: rotate(1.35deg); }
+      #diwali::before { right: 8%; left: -9%; background: rgba(220, 239, 225, 0.7); transform: rotate(-1.1deg); }
+
+      .chapter-index {
+        top: 8%;
+        right: 8%;
+        left: auto;
+        color: rgba(187, 163, 220, 0.24);
+        font-family: var(--sans);
+        font-size: clamp(9rem, 24vw, 21rem);
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: -0.15em;
+      }
+
+      #beginning .chapter-copy { margin-left: 12%; padding-top: 8vh; }
+      #navratri .chapter-copy { margin-left: 51%; padding-top: 8vh; }
+      #diwali .chapter-copy { margin-left: 11%; padding-top: 8vh; }
+
+      .chapter-copy { max-width: 480px; }
+
+      .chapter h2 {
+        max-width: 530px;
+        color: var(--plum-deep);
+        font-family: var(--sans);
+        font-size: clamp(2.8rem, 5.6vw, 6.2rem);
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: -0.085em;
+        line-height: 0.94;
+      }
+
+      .chapter-media {
+        position: absolute;
+        z-index: 1;
+        width: auto;
+      }
+
+      #beginning .chapter-media { right: 3%; bottom: 7%; width: min(47%, 645px); }
+      #navratri .chapter-media { top: 17%; right: 2%; width: min(51%, 690px); }
+      #diwali .chapter-media { bottom: 8%; left: 4%; width: min(54%, 730px); }
+      #navratri .chapter-index { top: 7%; right: 7%; }
+      #diwali .chapter-index { top: 8%; right: 12%; }
+
+      .chapter-caption,
+      .detail-pill,
+      .media-note,
+      .chapter-kicker { font-family: var(--mono); }
+
+      .bridge {
+        min-height: 100svh;
+        padding: 20vh 7% 18vh;
+      }
+
+      .bridge-inner { max-width: 970px; }
+
+      .bridge-quote {
+        font-family: var(--sans);
+        font-size: clamp(3rem, 7.7vw, 8.5rem);
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: -0.09em;
+        line-height: 0.94;
+      }
+
+      .reasons { min-height: 120svh; padding: 18vh 0 20vh; }
+      .reasons-heading { width: 62%; max-width: 720px; margin-bottom: 78px; margin-left: 12%; }
+
+      .reasons-heading h2 {
+        font-family: var(--sans);
+        font-size: clamp(3.2rem, 7vw, 7.4rem);
+        font-weight: 600;
+        letter-spacing: -0.09em;
+        line-height: 0.93;
+      }
+
+      .reason-grid { display: flex; flex-direction: column; gap: 0; width: 100%; }
+      .reason-card { width: min(66%, 800px); min-height: 220px; padding: 28px 34px; border-radius: 30px; }
+      .reason-card:nth-child(1) { align-self: flex-start; }
+      .reason-card:nth-child(2) { align-self: flex-end; margin-top: -24px; }
+      .reason-card:nth-child(3) { align-self: flex-start; margin-top: -18px; }
+
+      .reason-card h3 {
+        max-width: 430px;
+        font-family: var(--sans);
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: -0.07em;
+        line-height: 0.98;
+      }
+
+      .finale { min-height: 104svh; padding: 18vh 0 15vh; }
+
+      .finale-card {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        align-items: center;
+        width: min(100%, 980px);
+        padding: 62px 72px;
+        border: 0;
+        border-radius: 42px;
+        color: var(--cream);
+        background: var(--plum-deep);
+        box-shadow: 0 32px 90px rgba(77, 56, 88, 0.26);
+        text-align: left;
+      }
+
+      .finale-flower { grid-column: 1; grid-row: 1 / span 5; margin: auto; }
+      .finale-card .eyebrow,
+      .finale-card h2,
+      .finale-card .finale-copy,
+      .finale-card .finale-signoff,
+      .finale-card > div:last-child { grid-column: 2; }
+      .finale-card .eyebrow { color: var(--butter); }
+
+      .finale h2 {
+        color: var(--cream);
+        font-family: var(--sans);
+        font-size: clamp(3rem, 5.7vw, 6.2rem);
+        font-weight: 600;
+        letter-spacing: -0.085em;
+        line-height: 0.94;
+      }
+
+      .finale h2 em { color: var(--blush); }
+      .finale-copy { color: rgba(255, 250, 245, 0.72); }
+      .finale-signoff { background: rgba(255, 230, 167, 0.13); }
+      .finale-signoff span { color: rgba(255, 250, 245, 0.56); }
+      .replay-button { color: var(--plum-deep); background: var(--cream); }
+      .replay-button:hover { background: var(--butter); }
+
+      @media (max-width: 940px) {
+        .memory-thread { display: none; }
+        .hero { min-height: auto; padding: 15vh 0 12vh; }
+        .hero-copy { width: 100%; padding-left: 0; }
+        .hero-visual { position: relative; top: auto; right: auto; width: 100%; min-height: min(92vw, 650px); margin-top: 8vh; }
+        .hero-side-label { right: 0; bottom: 6%; }
+        .chapter { min-height: auto; padding: 14vh 0 13vh; }
+        .chapter::before { top: 7%; bottom: 7%; }
+        #beginning .chapter-copy,
+        #navratri .chapter-copy,
+        #diwali .chapter-copy { margin-left: 0; padding-top: 3vh; }
+        .chapter-media,
+        #beginning .chapter-media,
+        #navratri .chapter-media,
+        #diwali .chapter-media { position: relative; top: auto; right: auto; bottom: auto; left: auto; width: min(100%, 680px); margin-top: 8vh; }
+        .chapter-index,
+        #navratri .chapter-index,
+        #diwali .chapter-index { top: 4%; right: 0; font-size: clamp(8rem, 26vw, 15rem); }
+        .reasons-heading { width: 100%; margin-left: 0; }
+        .reason-card { width: 82%; }
+        .finale-card { grid-template-columns: 110px minmax(0, 1fr); padding: 48px 42px; }
+      }
+
+      @media (max-width: 640px) {
+        .hero h1 {
+          max-width: 100%;
+          font-size: clamp(2.4rem, 11.5vw, 5rem);
+          letter-spacing: -0.095em;
+        }
+        .hero-visual { min-height: 100vw; }
+        .hero-side-label { display: none; }
+        .chapter { padding: 12vh 0 11vh; }
+        .chapter h2 { font-size: clamp(2.9rem, 14vw, 5.2rem); }
+        .chapter::before { right: -12% !important; left: -12% !important; border-radius: 32px; }
+        .reason-card { width: 94%; min-height: 210px; padding: 24px 22px; }
+        .reason-card:nth-child(2) { align-self: flex-end; margin-top: 12px; }
+        .reason-card:nth-child(3) { margin-top: 12px; }
+        .finale-card { display: block; padding: 42px 23px 47px; border-radius: 30px; text-align: center; }
+        .finale-flower { margin: 0 auto 26px; }
+        .finale-card .eyebrow,
+        .finale-card h2,
+        .finale-card .finale-copy,
+        .finale-card .finale-signoff,
+        .finale-card > div:last-child { display: block; }
+        .finale-signoff { display: inline-flex !important; }
+      }
+    </style>
   </head>
   <body>
     <div class="page">
       <main>
+        <div class="memory-thread" aria-hidden="true">
+          <span class="memory-thread-line"></span>
+          <span class="memory-thread-dot dot-start">23.09.24</span>
+          <span class="memory-thread-dot dot-navratri">NAVRATRI</span>
+          <span class="memory-thread-dot dot-diwali">01.11.24</span>
+          <span class="memory-thread-dot dot-end">∞</span>
+        </div>
+
         <section class="hero" id="top" aria-labelledby="hero-title">
           <div class="hero-copy">
             <p class="eyebrow">AN OPEN LETTER TO SHAHANA</p>
@@ -1189,6 +1502,7 @@
           </div>
 
           <div class="scroll-cue"><i></i>scroll into our story</div>
+          <p class="hero-side-label" aria-hidden="true">one story<br />many little firsts</p>
           <span class="petal-float petal-one" aria-hidden="true">✦</span>
           <span class="petal-float petal-two" aria-hidden="true">✧</span>
           <span class="petal-float petal-three" aria-hidden="true">✦</span>
