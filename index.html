@@ -1515,8 +1515,298 @@
         .finale-signoff { display: inline-flex !important; }
       }
     </style>
+    <style>
+      body > .page { display: none !important; }
+
+      body {
+        min-width: 320px;
+        color: var(--plum-deep);
+        background:
+          radial-gradient(circle at 8% 9%, rgba(246, 214, 220, 0.78), transparent 25rem),
+          radial-gradient(circle at 94% 17%, rgba(255, 230, 167, 0.56), transparent 23rem),
+          #f7f0e9;
+      }
+
+      .letter-stage {
+        position: relative;
+        min-height: 100vh;
+        padding: clamp(22px, 5vw, 76px) clamp(16px, 4vw, 62px) 74px;
+        overflow: hidden;
+      }
+
+      .letter-stage::before,
+      .letter-stage::after {
+        position: absolute;
+        pointer-events: none;
+        content: '';
+      }
+
+      .letter-stage::before {
+        top: 12%;
+        left: 3%;
+        width: 120px;
+        height: 120px;
+        border-radius: 50% 0 50% 50%;
+        background: rgba(220, 239, 225, 0.64);
+        transform: rotate(24deg);
+      }
+
+      .letter-stage::after {
+        right: 4%;
+        bottom: 7%;
+        width: 180px;
+        height: 180px;
+        border: 1px solid rgba(187, 163, 220, 0.42);
+        border-radius: 50%;
+      }
+
+      .love-letter {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 850px);
+        margin: 0 auto;
+        padding: clamp(28px, 6vw, 78px) clamp(23px, 8vw, 96px) clamp(38px, 7vw, 86px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 4px;
+        background: rgba(255, 253, 249, 0.95);
+        box-shadow: 0 34px 90px rgba(96, 70, 108, 0.16), 0 2px 0 rgba(255, 255, 255, 0.9) inset;
+      }
+
+      .love-letter::before {
+        position: absolute;
+        inset: 13px;
+        border: 1px solid rgba(199, 141, 75, 0.17);
+        pointer-events: none;
+        content: '';
+      }
+
+      .letter-topline {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(96, 70, 108, 0.16);
+        color: var(--gold);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+      }
+
+      .letter-topline span:last-child { color: rgba(96, 70, 108, 0.5); text-align: right; }
+
+      .letter-heading {
+        position: relative;
+        padding: clamp(55px, 8vw, 96px) 0 46px;
+      }
+
+      .letter-eyebrow {
+        margin: 0 0 20px;
+        color: var(--gold);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+      }
+
+      .letter-heading h1 {
+        max-width: 680px;
+        margin: 0;
+        color: var(--plum-deep);
+        font-family: var(--sans);
+        font-size: clamp(4rem, 10vw, 8.8rem);
+        font-weight: 600;
+        letter-spacing: -0.1em;
+        line-height: 0.86;
+      }
+
+      .letter-subtitle {
+        max-width: 380px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .letter-rule {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 44px;
+        color: var(--blush-deep);
+        font-size: 15px;
+      }
+
+      .letter-rule::before {
+        width: 100%;
+        height: 1px;
+        background: rgba(96, 70, 108, 0.13);
+        content: '';
+      }
+
+      .letter-copy {
+        position: relative;
+        max-width: 620px;
+        margin: 0 auto;
+        color: #6f6074;
+        font-size: 16px;
+        line-height: 1.95;
+      }
+
+      .letter-copy p { margin: 0 0 28px; }
+
+      .letter-copy > p:first-child::first-letter {
+        float: left;
+        margin: 8px 8px 0 0;
+        color: var(--blush-deep);
+        font-family: var(--sans);
+        font-size: 4.8rem;
+        font-weight: 600;
+        line-height: 0.7;
+      }
+
+      .letter-polaroid {
+        width: min(47%, 320px);
+        margin: 8px 0 22px;
+        padding: 10px 10px 19px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 3px;
+        background: #fff;
+        box-shadow: 0 18px 34px rgba(96, 70, 108, 0.16);
+      }
+
+      .letter-polaroid img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+      }
+
+      .letter-polaroid figcaption {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 11px 4px 0;
+        color: var(--plum-deep);
+      }
+
+      .letter-polaroid figcaption strong {
+        font-family: var(--sans);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .letter-polaroid figcaption span {
+        color: rgba(96, 70, 108, 0.55);
+        font-family: var(--mono);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+      }
+
+      .polaroid-navratri { float: left; margin-right: 34px; margin-left: -36px; transform: rotate(-4.5deg); }
+      .polaroid-diwali { float: right; margin-left: 34px; margin-right: -36px; transform: rotate(4deg); }
+      .letter-copy::after { display: block; clear: both; content: ''; }
+
+      .letter-end {
+        max-width: 620px;
+        margin: 44px auto 0;
+        padding-top: 34px;
+        border-top: 1px solid rgba(96, 70, 108, 0.13);
+        color: #6f6074;
+        font-size: 16px;
+        line-height: 1.95;
+      }
+
+      .letter-closing { margin: 0 0 26px; color: var(--plum-deep); font-family: var(--sans); font-size: 23px; font-weight: 600; }
+
+      .letter-signoff { color: var(--gold); font-family: var(--serif); font-size: 20px; font-style: italic; line-height: 1.3; }
+      .letter-signoff strong { display: inline-block; margin-top: 7px; color: var(--plum-deep); font-size: 17px; font-weight: 500; }
+
+      .letter-postscript {
+        max-width: 620px;
+        margin: 40px auto 0;
+        padding: 16px 18px;
+        border-radius: 11px;
+        color: rgba(96, 70, 108, 0.63);
+        background: rgba(255, 230, 167, 0.3);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        line-height: 1.6;
+      }
+
+      .letter-postscript strong { color: var(--gold); }
+
+      @media (max-width: 700px) {
+        .letter-stage { padding: 12px 10px 30px; }
+        .love-letter { padding: 23px 21px 42px; }
+        .love-letter::before { inset: 8px; }
+        .letter-topline { font-size: 8px; }
+        .letter-heading { padding: 54px 0 38px; }
+        .letter-heading h1 { font-size: clamp(3.6rem, 18vw, 6rem); }
+        .letter-copy { font-size: 15px; }
+        .letter-polaroid { width: min(78%, 300px); }
+        .polaroid-navratri,
+        .polaroid-diwali { float: none; margin: 30px auto 34px; }
+      }
+    </style>
   </head>
   <body>
+    <div class="letter-stage">
+      <article class="love-letter" aria-labelledby="letter-title">
+        <div class="letter-topline">
+          <span>for shahana</span>
+          <span>23 september 2024 / girlfriend's day</span>
+        </div>
+
+        <header class="letter-heading">
+          <p class="letter-eyebrow">an actual letter</p>
+          <h1 id="letter-title">dear shahana,</h1>
+          <p class="letter-subtitle">i wanted to write this down properly, because you mean too much to leave in my head.</p>
+        </header>
+
+        <div class="letter-rule" aria-hidden="true"><span>✦</span></div>
+
+        <div class="letter-copy">
+          <p>i don't know how to write this without sounding a bit dramatic, so i'll just say it properly. i love you, shahana. you have become one of the best parts of my life, and i don't think i say that enough.</p>
+
+          <figure class="letter-polaroid polaroid-navratri">
+            <img id="letter-navratri-photo" alt="our first navratri after we started dating, with me in a black kurta" />
+            <figcaption>
+              <strong>our first navratri</strong>
+              <span>black kurta / not my best angle</span>
+            </figcaption>
+          </figure>
+
+          <p>we started dating on 23 september 2024. i still think about how quickly you became someone i wanted to tell everything to. our first navratri came soon after. i was in the black kurta, looking chopped to be honest, but i was happy because you were there. that is what i see when i look at the photo.</p>
+
+          <p>then there was our first diwali on 01.11.2024. i was in the green kurta, you were holding onto me, and somehow even a photo of just our hands feels like a proper memory. i like that about us. the small things stay.</p>
+
+          <figure class="letter-polaroid polaroid-diwali">
+            <img id="letter-diwali-photo" alt="our first diwali on 01 november 2024, with me in a green kurta" />
+            <figcaption>
+              <strong>our first diwali</strong>
+              <span>01.11.2024 / green kurta</span>
+            </figcaption>
+          </figure>
+
+          <p>you make normal days better. i can be honest with you, say something stupid, or just exist next to you, and it still feels right. i like having you as my person. i like that our story is made of festivals and photos, but also random conversations and days that nobody else would think to remember.</p>
+
+          <p>i want more of it. more days with you, more bad photos, more celebrations, more lilies, and more of the boring little moments too. especially those.</p>
+
+          <p>happy girlfriend's day. thank you for being you, and for letting me be me around you. you matter to me more than i know how to explain, but i hope i show you.</p>
+        </div>
+
+        <div class="letter-end">
+          <p class="letter-closing">i love you.</p>
+          <p class="letter-signoff">love,<br /><strong>the one in the black kurta</strong></p>
+        </div>
+
+        <div class="letter-postscript"><strong>p.s.</strong> you still looked better than me in both photos.</div>
+      </article>
+    </div>
+
+    <div class="page" aria-hidden="true">
     <div class="page">
       <main>
         <div class="memory-thread" aria-hidden="true">
@@ -5315,8 +5605,6 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
 +BfB934kS40y3LTLlVxg8Z9hSi0tzNSsf//Z
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script>
       (function () {
         var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -5329,8 +5617,8 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
           }
         }
 
-        setPhoto('navratri-photo', 'navratri-data');
-        setPhoto('diwali-photo', 'diwali-data');
+        setPhoto('letter-navratri-photo', 'navratri-data');
+        setPhoto('letter-diwali-photo', 'diwali-data');
 
         var revealItems = document.querySelectorAll('[data-reveal]');
 
