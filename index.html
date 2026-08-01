@@ -1253,6 +1253,56 @@
         transform: rotate(4.5deg);
       }
 
+      .hero-memory-card {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        width: min(78%, 460px);
+        min-height: 360px;
+        justify-content: space-between;
+        padding: 38px 40px 34px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        background: linear-gradient(145deg, rgba(255, 250, 245, 0.94), rgba(246, 214, 220, 0.82));
+        box-shadow: 0 26px 54px rgba(127, 93, 133, 0.16), 0 4px 0 rgba(255, 255, 255, 0.74) inset;
+        transform: rotate(4.5deg);
+      }
+
+      .hero-memory-card::before {
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        width: 100px;
+        height: 33px;
+        border-radius: 5px;
+        background: rgba(255, 230, 167, 0.72);
+        box-shadow: 0 3px 8px rgba(127, 93, 133, 0.08);
+        content: '';
+        transform: translateX(-50%) rotate(-4deg);
+      }
+
+      .hero-memory-card > span,
+      .hero-memory-card small {
+        color: rgba(96, 70, 108, 0.56);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.13em;
+        line-height: 1.6;
+        text-transform: lowercase;
+      }
+
+      .hero-memory-card strong {
+        color: var(--plum-deep);
+        font-family: var(--sans);
+        font-size: clamp(4rem, 8vw, 7rem);
+        font-weight: 600;
+        letter-spacing: -0.1em;
+        line-height: 0.82;
+      }
+
+      .hero-memory-card small { align-self: flex-end; text-align: right; }
+
       body * { text-transform: lowercase !important; }
 
       .hero-side-label {
@@ -1494,12 +1544,10 @@
             <div class="hero-aura"></div>
             <div class="hero-orbit"></div>
             <div class="hero-bloom"><span>✦</span></div>
-            <div class="hero-photo-card">
-              <img id="hero-photo" alt="" />
-              <div class="photo-label">
-                <strong>first navratri</strong>
-                <span>black kurta<br />softest memory</span>
-              </div>
+            <div class="hero-memory-card">
+              <span>the dates i keep coming back to</span>
+              <strong>23.09<br />01.11</strong>
+              <small>one beginning<br />two very good days</small>
             </div>
           </div>
 
@@ -1519,12 +1567,6 @@
               i didn't have some perfect speech ready. i just liked being around you, and then i liked it a little too much. i still do.
             </p>
             <p class="chapter-caption" data-reveal>the start of something i really mean</p>
-          </div>
-          <div class="chapter-media" data-reveal>
-            <div class="chapter-photo navratri-photo">
-              <img id="beginning-photo" class="photo-image" alt="a warm memory from the beginning of our story" />
-            </div>
-            <div class="media-note"><span>chapter zero</span><span>✦ keep this one</span></div>
           </div>
         </section>
 
@@ -5287,8 +5329,6 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
           }
         }
 
-        setPhoto('hero-photo', 'navratri-data');
-        setPhoto('beginning-photo', 'navratri-data');
         setPhoto('navratri-photo', 'navratri-data');
         setPhoto('diwali-photo', 'diwali-data');
 
