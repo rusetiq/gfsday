@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Shahana, this is our little story</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700&display=swap');
 
       :root {
         --plum: #60466c;
@@ -25,9 +25,9 @@
         --muted: #806d85;
         --line: rgba(96, 70, 108, 0.15);
         --shadow: 0 24px 70px rgba(127, 93, 133, 0.17);
-        --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        --serif: 'Playfair Display', Georgia, serif;
-        --mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+        --sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --serif: 'Bodoni Moda', Didot, Georgia, serif;
+        --mono: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
 
       * {
@@ -175,7 +175,7 @@
         align-items: center;
         gap: clamp(38px, 7vw, 130px);
         min-height: 100svh;
-        padding: 136px 0 86px;
+        padding: 94px 0 86px;
       }
 
       .hero-copy {
@@ -203,7 +203,7 @@
         font-family: var(--serif);
         font-size: clamp(3.4rem, 7vw, 7.5rem);
         font-weight: 600;
-        letter-spacing: -0.065em;
+        letter-spacing: -0.07em;
         line-height: 0.94;
       }
 
@@ -239,7 +239,7 @@
         font-family: var(--serif);
         font-size: 23px;
         font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       .hero-date span {
@@ -1160,17 +1160,6 @@
     </style>
   </head>
   <body>
-    <nav class="nav-shell" aria-label="Story navigation">
-      <a class="nav-brand" href="#top">
-        <span class="nav-mark" aria-hidden="true">✦</span>
-        <span>shahana / our story</span>
-      </a>
-      <div class="nav-right">
-        <span class="nav-note">made with all my love</span>
-        <div class="nav-progress" aria-label="Story progress"><span id="progress-fill"></span></div>
-      </div>
-    </nav>
-
     <div class="page">
       <main>
         <section class="hero" id="top" aria-labelledby="hero-title">
@@ -1204,14 +1193,6 @@
           <span class="petal-float petal-two" aria-hidden="true">✧</span>
           <span class="petal-float petal-three" aria-hidden="true">✦</span>
         </section>
-
-        <nav class="story-rail" aria-label="Story chapters">
-          <a href="#beginning" data-chapter-link="beginning">00</a>
-          <a href="#navratri" data-chapter-link="navratri">01</a>
-          <a href="#diwali" data-chapter-link="diwali">02</a>
-          <a href="#reasons" data-chapter-link="reasons">03</a>
-          <a href="#finale" data-chapter-link="finale">04</a>
-        </nav>
 
         <section class="chapter" id="beginning" data-chapter aria-labelledby="beginning-title">
           <span class="chapter-index" aria-hidden="true">00</span>
@@ -4997,19 +4978,10 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
 
         var revealItems = document.querySelectorAll('[data-reveal]');
 
-        function updateProgress() {
-          var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          var progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-          var fill = document.getElementById('progress-fill');
-          if (fill) fill.style.width = Math.max(0, Math.min(100, progress * 100)) + '%';
-        }
-
         function fallbackAnimations() {
           revealItems.forEach(function (item) {
             item.classList.add('is-visible');
           });
-          window.addEventListener('scroll', updateProgress, { passive: true });
-          updateProgress();
         }
 
         function initGSAP() {
@@ -5017,15 +4989,7 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
           var ScrollTrigger = window.ScrollTrigger;
           gsap.registerPlugin(ScrollTrigger);
 
-          gsap.from('.nav-shell', {
-            autoAlpha: 0,
-            y: -24,
-            duration: 0.75,
-            ease: 'power3.out'
-          });
-
           gsap.from('.hero-copy > *', {
-            autoAlpha: 0,
             y: 28,
             duration: 0.72,
             stagger: 0.08,
@@ -5034,7 +4998,6 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
           });
 
           gsap.from('.hero-visual', {
-            autoAlpha: 0,
             scale: 0.9,
             rotation: -4,
             duration: 1.1,
@@ -5071,6 +5034,78 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
             }
           });
 
+          document.querySelectorAll('.chapter').forEach(function (section, index) {
+            var number = section.querySelector('.chapter-index');
+            var copy = section.querySelector('.chapter-copy');
+            var photo = section.querySelector('.chapter-photo');
+
+            if (number) {
+              gsap.to(number, {
+                yPercent: -18,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1.2
+                }
+              });
+            }
+
+            if (copy) {
+              gsap.to(copy, {
+                xPercent: index % 2 === 0 ? -2.5 : 2.5,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1.4
+                }
+              });
+            }
+
+            if (photo) {
+              gsap.fromTo(photo,
+                { clipPath: 'inset(12% 8% 12% 8%)', opacity: 0.72 },
+                {
+                  clipPath: 'inset(0% 0% 0% 0%)',
+                  opacity: 1,
+                  ease: 'none',
+                  scrollTrigger: {
+                    trigger: photo,
+                    start: 'top 92%',
+                    end: 'top 55%',
+                    scrub: 1
+                  }
+                }
+              );
+            }
+          });
+
+          gsap.to('.bridge-quote', {
+            scale: 1.035,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.bridge',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.1
+            }
+          });
+
+          gsap.to('.finale-orbit', {
+            rotation: 24,
+            scale: 1.12,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.finale',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
+            }
+          });
+
           gsap.to('.petal-float', {
             y: -24,
             rotation: 9,
@@ -5079,29 +5114,6 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
             yoyo: true,
             stagger: 0.7,
             ease: 'sine.inOut'
-          });
-
-          ScrollTrigger.create({
-            start: 0,
-            end: 'max',
-            onUpdate: function (self) {
-              var fill = document.getElementById('progress-fill');
-              if (fill) fill.style.width = (self.progress * 100) + '%';
-            }
-          });
-
-          document.querySelectorAll('[data-chapter]').forEach(function (section) {
-            var link = document.querySelector('[data-chapter-link="' + section.id + '"]');
-            if (!link) return;
-
-            ScrollTrigger.create({
-              trigger: section,
-              start: 'top 62%',
-              end: 'bottom 38%',
-              onToggle: function (self) {
-                link.classList.toggle('is-active', self.isActive);
-              }
-            });
           });
 
           gsap.from('.reason-card', {
@@ -5130,7 +5142,6 @@ TLWK/wDENwBayH5Q2VOfxNc8tzzqm57b+27+0Rp+r6WfBHhhTO25c+Wc+g7V+S958O73VbtbcWrl5SH2
         });
 
         window.addEventListener('resize', function () {
-          updateProgress();
           if (window.ScrollTrigger) window.ScrollTrigger.refresh();
         }, { passive: true });
       }());
